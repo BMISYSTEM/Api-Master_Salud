@@ -55,6 +55,7 @@ class MarcasController extends Controller
         try {
             $marcas = marca::find($request['id']);
             $marcas->nombre = $request['nombre'];
+            $marcas->save();
             return response()->json(['succes'=>'Se actualizo una marca']);
         } catch (\Throwable $th) {
             return response()->json(['error'=>'Se presento un error inesperado '.$th]);
@@ -78,8 +79,9 @@ class MarcasController extends Controller
             $marcas = marca::find($request['id'])->delete();
             return response()->json(['succes'=>'Se elimino una marca']);
         } catch (\Throwable $th) {
-            return response()->json(['error'=>'Se presento un error inesperado '.$th]);
+            return response()->json(['error'=>'Se presento un error inesperado '.$th],500);
         }
+        
     }
     /**
      * Consulta una marca
@@ -88,10 +90,10 @@ class MarcasController extends Controller
     {
         $request = $request->validate(
             [
-                'id'=>'require|exists:marcas,id',
+                'id'=>'required|exists:marcas,id',
             ],
             [
-                'id.require'=>'El nombre es obligatorio',
+                'id.required'=>'El nombre es obligatorio',
                 'id.exists'=>'El id no existe',
             ]
         );

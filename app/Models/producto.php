@@ -14,6 +14,10 @@ class producto extends Model
         'id_promocion',
         'estado',
         'nombre',
-        'precio'
+        'precio',
+        'imagen1',
+        'imagen2',
+        'imagen3',
+        'imagen4'
     ];
 }

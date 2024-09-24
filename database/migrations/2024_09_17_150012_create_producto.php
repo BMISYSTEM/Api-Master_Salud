@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('producto', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->float('precio');
@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('imagen2');
             $table->string('imagen3');
             $table->string('imagen4');
+            $table->unsignedBigInteger('id_marca')->nullable(); 
+            $table->unsignedBigInteger('id_promocion')->nullable();
             $table->foreign('id_marca')->references('id')->on('marcas');
             $table->foreign('id_promocion')->references('id')->on('promociones');
             $table->timestamps();

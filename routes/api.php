@@ -2,11 +2,17 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Marcas\MarcasController;
+use App\Http\Controllers\Productos\ProductosController;
+use App\Http\Controllers\Promociones\PromocionesController;
 use App\Http\Controllers\User\UserController;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/users',function(){
+        $user = Auth::user();
+        return response()->json($user);
+    });
 
     /**
      * user->create crea un usuario y ashea el password
@@ -22,8 +28,19 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/marcas/find',[MarcasController::class,'findMarca']);
     Route::get('/marcas/index',[MarcasController::class,'allMarca']);
     /**
-     * ofertas
+     * Promociones
      */
+    Route::post('/promocion/create',[PromocionesController::class,'createPromocion']);
+    Route::post('/promocion/update',[PromocionesController::class,'updatePromocion']);
+    Route::post('/promocion/delete',[PromocionesController::class,'deletePromocion']);
+    Route::post('/promocion/find',[PromocionesController::class,'findPromocion']);
+    Route::get('/promocion/index',[PromocionesController::class,'allPromociones']);
+    /**
+     * Producto
+     */
+    Route::post('/producto/create',[ProductosController::class,'createProducto']);
+    Route::get('/producto/index',[ProductosController::class,'allProdcuto']);
+
 })->middleware('auth:sanctum');
 
 /**

@@ -12,15 +12,15 @@ class PromocionesController extends Controller
     {
         $request = $request->validate(
             [
-                'nombre' =>'require',
-                'porcentaje'=>'require|min:0|max:100',
-                'activo'=>'require'
+                'nombre' =>'required',
+                'porcentaje'=>'required|min:0|max:100',
+                'activo'=>'required'
             ],
             [
-                'nombre.require' =>'EL nombre es requerido',
-                'porcentaje.require'=>'EL procentaje es requerido',
-                'porcentaje.require'=>'EL procentaje es requerido',
-                'activo'=>'require'
+                'nombre.required' =>'EL nombre es requerido',
+                'porcentaje.required'=>'EL procentaje es requerido',
+                'porcentaje.required'=>'EL procentaje es requerido',
+                'activo'=>'required'
             ]
         );
         try {
@@ -41,16 +41,15 @@ class PromocionesController extends Controller
         $request = $request->validate(
             [
                 'id'=>'required|exists:promociones,id',
-                'nombre' =>'require',
-                'porcentaje'=>'require|min:0|max:100',
-                'activo'=>'require'
+                'nombre' =>'required',
+                'porcentaje'=>'required|min:0|max:100',
+                'activo'=>'required'
             ],
             [
-                'id.require'=>'El id es obligatorio',
+                'id.required'=>'El id es obligatorio',
                 'id.exists'=>'El id proporcionado no existe',
-                'nombre.require' =>'EL nombre es requerido',
-                'porcentaje.require'=>'EL procentaje es requerido',
-                'porcentaje.require'=>'EL procentaje es requerido',
+                'nombre.required' =>'EL nombre es requerido',
+                'porcentaje.required'=>'EL procentaje es requerido',
                 'activo'=>'require'
             ]
         );
