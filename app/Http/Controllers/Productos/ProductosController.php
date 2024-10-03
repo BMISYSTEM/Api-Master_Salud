@@ -52,27 +52,27 @@ class ProductosController extends Controller
     {
         $request = $request->validate(
             [
-                'id_producto'=>'require|exists:productos,id',
-                'id_marca'=>'require|exists:marcas,id',
-                'nombre'=>'require',
-                'precio'=>'require',
-                'id_promocion'=>'require|exists:promociones,id',
-                'estado'=>'require'
+                'id'=>'required|exists:productos,id',
+                'id_marca'=>'required|exists:marcas,id',
+                'nombre'=>'required',
+                'precio'=>'required',
+                'id_promocion'=>'required|exists:promociones,id',
+                'estado'=>'required'
             ],
             [
-                'id_producto.require'=>'El producto es obligatorio',
-                'id_producto.exists'=>'EL producto no existe en la base de datos',
-                'id_marca.require'=>'El id de la marca es obligatorio ',
+                'id.required'=>'El producto es obligatorio',
+                'id.exists'=>'EL producto no existe en la base de datos',
+                'id_marca.required'=>'El id de la marca es obligatorio ',
                 'id_marca.exists'=>'El id de la marca no existe',
-                'nombre.require'=>'El nombre es obligatorio',
+                'nombre.required'=>'El nombre es obligatorio',
                 'precio'=>'El precio es obligatorio',
-                'id_promocion.require'=>'El id de la promocion es obligatorio',
+                'id_promocion.required'=>'El id de la promocion es obligatorio',
                 'id_promocion.exists'=>'El id de promocion no existe',
                 'estado'=>'El estado es obligatorio'
             ]
         );
         try {
-            $producto = producto::find($request['id_producto']);
+            $producto = producto::find($request['id']);
             $producto->id_marca = $request['id_marca'];
             $producto->id_promocion = $request['id_promocion'];
             $producto->nombre = $request['nombre'];
@@ -82,7 +82,7 @@ class ProductosController extends Controller
 
             return response()->json(['succes'=>'Se actualizo el producto de forma correcta']);
         } catch (\Throwable $th) {
-            return response()->json(['error'=>'Se presento un error inesperado '.$th]);
+            return response()->json(['error'=>'Se presento un error inesperado '.$th],500);
         }
     }
 
@@ -127,13 +127,56 @@ class ProductosController extends Controller
     public function allProdcuto()
     {
         try {
-            $producto = DB::select('select p.id,p.nombre,p.id_marca,m.nombre as nombre_marca,p.id_promocion,pr.porcentaje,pr.nombre as nombre_promocion,p.precio,p.estado  from productos p 
+            $producto = DB::select('
+                        select 
+                        p.id,p.nombre,p.id_marca,m.nombre as nombre_marca,
+                        p.id_promocion,pr.porcentaje,pr.nombre as nombre_promocion,
+                        p.precio,p.estado,p.imagen1,p.imagen2,p.imagen3,p.imagen4
+                        from productos p 
                         inner join marcas m on p.id_marca = m.id
                         inner join promociones pr on p.id_promocion = pr.id
                         '); 
             return response()->json(['succes'=>$producto]);
         } catch (\Throwable $th) {
             return response()->json(['error'=>'Se presento un error inesperado '.$th]);
+        }
+    }
+
+    public function updateImagen(Request $request)
+    {
+        try {
+            $Validate = $request->validate(
+                [
+                    'id_producto'=>'required|exists:productos,id',
+                    'imagen'=>'required',
+                    'file'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+                ],
+                [
+                    'imagen.require'=>'El numero de imagen es obligatorio',
+                ]
+            );
+            $ruta = $request->file('file');
+            $imagenPath = $ruta->store('fotos', 'public'); 
+            $producto = producto::find($Validate['id_producto']);
+            switch ($Validate['imagen'])
+            {
+                case 1:
+                    $producto->imagen1 = $imagenPath;
+                    break;
+                case 2:
+                    $producto->imagen2 = $imagenPath;
+                    break;
+                case 3:
+                    $producto->imagen3 = $imagenPath;
+                    break;
+                case 4:
+                    $producto->imagen4 = $imagenPath;
+                    break;
+            }
+            $producto->save();
+            return response()->json(['succes'=>'La imagen se actualizo con exito']);
+        } catch (\Throwable $th) {
+            return response()->json(['error'=>'Se presento un error inesperado '.$th],500);
         }
     }
 }

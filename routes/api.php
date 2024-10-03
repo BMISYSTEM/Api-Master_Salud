@@ -26,7 +26,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/marcas/update',[MarcasController::class,'updateMarca']);
     Route::post('/marcas/delete',[MarcasController::class,'deleteMarca']);
     Route::post('/marcas/find',[MarcasController::class,'findMarca']);
-    Route::get('/marcas/index',[MarcasController::class,'allMarca']);
     /**
      * Promociones
      */
@@ -34,16 +33,30 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/promocion/update',[PromocionesController::class,'updatePromocion']);
     Route::post('/promocion/delete',[PromocionesController::class,'deletePromocion']);
     Route::post('/promocion/find',[PromocionesController::class,'findPromocion']);
-    Route::get('/promocion/index',[PromocionesController::class,'allPromociones']);
     /**
      * Producto
      */
     Route::post('/producto/create',[ProductosController::class,'createProducto']);
-    Route::get('/producto/index',[ProductosController::class,'allProdcuto']);
-
+    Route::post('producto/update-image',[ProductosController::class,'updateImagen']);
+    Route::post('producto/update',[ProductosController::class,'updateProducto']);
+    
 })->middleware('auth:sanctum');
 
 /**
  * Login 
  */
 Route::post('/user/auth',[AuthController::class,'Auth']);
+
+/**
+ * Listado de productos
+ */
+Route::get('/producto/index',[ProductosController::class,'allProdcuto']);
+/**
+ * Listado de promociones
+ */
+ Route::get('/promocion/index',[PromocionesController::class,'allPromociones']);
+/**
+ * Listado de marcas
+ */
+Route::get('/marcas/index',[MarcasController::class,'allMarca']);
+
