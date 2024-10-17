@@ -98,12 +98,12 @@
                         </tr>
                     </table>
                 </td>
-                <td style="vertical-align: top;">
-                    <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Cantidad productos: 6</h2>
-                    <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Valor total Factura: COP 500.000</h2>
-                </td>
             </tr>
         </table>
+        <div>
+            <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Cantidad productos: 6</h2>
+            <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Valor total Factura: COP 500.000</h2>
+        </div>
     </div>
 </body>
 </html>
