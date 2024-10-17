@@ -13,9 +13,6 @@ class ComprasController extends Controller
         try {
             //code...
             Mail::to('baironmenesesidarraga.990128@gmail.com')->send(new MasterSalud());
-            if (Mail::failures()) {
-                return response()->json(['error' => 'El correo no se pudo enviar'], 500);
-            }
             return response()->json(['succes'=>'correo enviado']);
         } catch (\Throwable $th) {
             //throw $th;
