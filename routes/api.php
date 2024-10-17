@@ -41,12 +41,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/producto/create',[ProductosController::class,'createProducto']);
     Route::post('producto/update-image',[ProductosController::class,'updateImagen']);
     Route::post('producto/update',[ProductosController::class,'updateProducto']);
-    /**
-     * Compras
-     */
-    Route::post('/compras/new',[ComprasController::class,'newCompra']);
 })->middleware('auth:sanctum');
 
+/**
+ * Compras
+ */
+Route::get('/compras/new',[ComprasController::class,'newCompra']);
 /**
  * Login 
  */
