@@ -28,7 +28,7 @@ class MasterSalud extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from:new Address('correodeenvio@email.com','soporte'),
+            from:new Address('backend@backendecomerce.com','soporte'),
             subject: 'Master Salud',
         );
     }
