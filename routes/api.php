@@ -6,6 +6,7 @@ use App\Http\Controllers\Marcas\MarcasController;
 use App\Http\Controllers\Productos\ProductosController;
 use App\Http\Controllers\Promociones\PromocionesController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +65,14 @@ Route::get('/producto/index',[ProductosController::class,'allProdcuto']);
  */
 Route::get('/marcas/index',[MarcasController::class,'allMarca']);
 
+
+/**
+ * controladores de despliegue
+ */
+
+
+Route::get('/config/all',function(){
+    Artisan::call('migrate');
+    Artisan::call('storage:link');
+    return response()->json(['succes'=>'se ejecuto la migraciones y se creo el enlase simbolico']);
+});
