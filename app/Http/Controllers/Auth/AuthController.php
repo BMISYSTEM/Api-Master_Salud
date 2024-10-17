@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         $request = $request->validate(
             [
-                'email'=>'required|email|exists:users,email',
+                'email'=>'required|email',
                 'password'=>'required|min:6'
             ],
             [
@@ -24,13 +24,19 @@ class AuthController extends Controller
             ]
         );
 
-        if(!Auth::attempt($request))
-        {   
-            return response()->json(['error'=>'El password es incorrecto']);
+        try {
+            //code...
+            if(!Auth::attempt($request))
+            {   
+                return response()->json(['error'=>'El password es incorrecto']);
+            }
+            $user = Auth::user();
+            $token = $user->createToken('token')->plainTextToken;
+            return response()->json(['succes'=>$token]);
+        } catch (\Throwable $th) {
+            return response()->json(['error'=>$th],200);
+            //throw $th;
         }
-        $user = Auth::user();
-        $token = $user->createToken('token')->plainTextToken;
-        return response()->json(['succes'=>$token]);
     }
 
 
