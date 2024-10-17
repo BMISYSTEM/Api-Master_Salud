@@ -16,10 +16,7 @@ Route::middleware('auth:sanctum')->group(function(){
         return response()->json($user);
     });
 
-    /**
-     * user->create crea un usuario y ashea el password
-     */
-    Route::post('/user/create',[UserController::class,'createUser']);
+
 
     /**
      * Marcas
@@ -65,7 +62,10 @@ Route::get('/producto/index',[ProductosController::class,'allProdcuto']);
  */
 Route::get('/marcas/index',[MarcasController::class,'allMarca']);
 
-
+    /**
+     * user->create crea un usuario y ashea el password
+     */
+    Route::post('/user/create',[UserController::class,'createUser']);
 /**
  * controladores de despliegue
  */
