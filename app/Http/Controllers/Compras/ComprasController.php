@@ -40,9 +40,10 @@ class ComprasController extends Controller
             ]
         );
         $factura = Str::uuid();
+        $product = $data['productos'];
         try {
             //code...
-            Mail::to($data['email'])->send(new MasterSalud($data,$factura));
+            Mail::to($data['email'])->send(new MasterSalud($data,$factura,$product ));
             return response()->json(['succes'=>'correo enviado']);
         } catch (\Throwable $th) {
             //throw $th;

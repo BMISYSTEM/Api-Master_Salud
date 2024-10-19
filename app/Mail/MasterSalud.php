@@ -16,13 +16,15 @@ class MasterSalud extends Mailable
 
     public $data;
     public $uuid;//factura
+    public $product;
     /**
      * Create a new message instance.
      */
-    public function __construct($data,$uuid)
+    public function __construct($data,$uuid,$product)
     {
         $this->data = $data;
         $this->uuid = $uuid;
+        $this->product = $product;
     }
 
     /**
@@ -45,7 +47,8 @@ class MasterSalud extends Mailable
             view: 'emails.compra',
             with: [
                     'data' => $this->data,
-                    'factura'=>['factura'=>$this->uuid]
+                    'factura'=>['factura'=>$this->uuid],
+                    'product'=>$this->product,
                 ]
         );
     }
