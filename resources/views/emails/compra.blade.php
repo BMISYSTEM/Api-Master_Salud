@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Correo de Laravel</title>
+    <title>Factura de compra</title>
     <style>
-        /* Estilos generales que se aplican en todos los clientes de correo */
+ 
         body {
             margin: 0;
             padding: 0;
@@ -44,14 +44,13 @@
                     <img src="{{ asset('logo.jpg') }}" alt="icono de logo" style="width: 100px; height: 100px;">
                 </td>
                 <td style="text-align: center;">
-                    <h1 style="font-size: 24px; color: rgb(14, 162, 176);">Factura: 0001</h1>
+                    <h1 style="font-size: 24px; color: rgb(14, 162, 176);">Factura: {{$factura['factura']}}</h1>
                 </td>
             </tr>
         </table>
 
-        <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Se ha recibido su pago. Gracias!</h2>
+        <h2 style="font-size: 20px; color: rgb(14, 162, 176);">{{$data['nombre']}} {{$data['apellido']}}, Se ha recibido su pago. Gracias!</h2>
         <p style="font-size: 16px; color: rgb(7, 87, 94);">Hemos recibido correctamente el pago de la factura H-8979845 para los siguientes productos.</p>
-
         <table width="100%">
             <tr>
                 <td style="vertical-align: top;">
@@ -102,7 +101,7 @@
         </table>
         <div>
             <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Cantidad productos: 6</h2>
-            <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Valor total Factura: COP 500.000</h2>
+            <h2 style="font-size: 20px; color: rgb(14, 162, 176);">Valor total Factura: COP {{$data['valort']}}</h2>
         </div>
     </div>
 </body>

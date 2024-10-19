@@ -14,12 +14,15 @@ class MasterSalud extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data;
+    public $uuid;//factura
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data,$uuid)
     {
-        //
+        $this->data = $data;
+        $this->uuid = $uuid;
     }
 
     /**
@@ -40,6 +43,10 @@ class MasterSalud extends Mailable
     {
         return new Content(
             view: 'emails.compra',
+            with: [
+                    'data' => $this->data,
+                    'factura'=>['factura'=>$this->uuid]
+                ]
         );
     }
     

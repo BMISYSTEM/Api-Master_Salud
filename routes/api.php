@@ -43,7 +43,7 @@ Route::middleware('auth:sanctum')->group(function(){
 /**
  * Compras
  */
-Route::get('/compras/new',[ComprasController::class,'newCompra']);
+Route::post('/compras/new',[ComprasController::class,'newCompra']);
 /**
  * Login 
  */
