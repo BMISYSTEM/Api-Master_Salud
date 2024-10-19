@@ -63,7 +63,7 @@
                             <tr>
                                 @foreach($chunk as $producto)
                                     <td class="product-card">
-                                        <img src="{{ asset($producto->imagen1) }}" alt="imagen">
+                                        <img src="{{ asset('storage/'$producto->imagen1) }}" alt="imagen">
                                         <p style="font-size: 12px;">Nombre producto: {{ $producto->nombre }}</p>
                                         <p style="font-size: 12px;">Valor Normal: COP {{ number_format($producto->precio, 0, ',', '.') }}</p>
                                         <p style="font-size: 12px;">Descuento: {{ $producto->porcentaje }}%</p>
