@@ -41,9 +41,28 @@ class ComprasController extends Controller
         );
         $factura = Str::uuid();
         $product = $data['productos'];
+        $productosCollection = collect($product);
+        $productosObjetos = $productosCollection->map(function ($producto) {
+            return (object) [
+                'id' => $producto['id'],
+                'nombre' => $producto['nombre'],
+                'id_marca' => $producto['id_marca'],
+                'nombre_marca' => $producto['nombre_marca'],
+                'id_promocion' => $producto['id_promocion'],
+                'porcentaje' => $producto['porcentaje'],
+                'nombre_promocion' => $producto['nombre_promocion'],
+                'precio' => $producto['precio'],
+                'estado' => $producto['estado'],
+                'imagen1' => $producto['imagen1'],
+                'imagen2' => $producto['imagen2'],
+                'imagen3' => $producto['imagen3'],
+                'imagen4' => $producto['imagen4'],
+                'cantidad' => $producto['cantidad'],
+            ];
+        });
         try {
             //code...
-            Mail::to($data['email'])->send(new MasterSalud($data,$factura,$product ));
+            Mail::to($data['email'])->send(new MasterSalud($data,$factura,$productosObjetos ));
             return response()->json(['succes'=>'correo enviado']);
         } catch (\Throwable $th) {
             //throw $th;
