@@ -23,6 +23,7 @@ class ComprasController extends Controller
                 'email'=>'required',
                 'ciudad'=>'required',
                 'direccion'=>'required',
+                'telefono'=>'required'
             ],
             [
                 'id.required'=>'El campo id es obligatorio no se completo la compra.',
