@@ -59,7 +59,7 @@
             <tr>
                 <td style="vertical-align: top;">
                     <table width="100%" style="border-collapse: collapse;">
-                        @foreach($produc->chunk(2) as $chunk)
+                        @foreach($product->chunk(2) as $chunk)
                             <tr>
                                 @foreach($chunk as $producto)
                                     <td class="product-card">
