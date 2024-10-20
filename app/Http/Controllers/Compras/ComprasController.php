@@ -121,7 +121,7 @@ class ComprasController extends Controller
 
         );
 
-        $index = DB::select('select * from venta_productos where factura = '.$data['factura']);
+        $index = DB::select("select * from venta_productos where factura = '".$data['factura']."'");
         return response()->json(['succes'=>$index]);
     }
 
