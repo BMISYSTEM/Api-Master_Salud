@@ -14,6 +14,7 @@ class venta_producto extends Model
         'producto',
         'promocion',
         'marca',
+        'cantidad',
         'valor_unitario',
         'procentaje_aplicado',
     ];

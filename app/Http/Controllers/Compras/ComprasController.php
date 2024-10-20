@@ -83,6 +83,7 @@ class ComprasController extends Controller
                         'producto'=>$prod['id'],
                         'promocion'=>$prod['id_promocion'],
                         'marca'=>$prod['id_marca'],
+                        'cantidad'=>$prod['cantidad'],
                         'valor_unitario'=>$prod['precio'],
                         'procentaje_aplicado'=>$prod['porcentaje'],
                     ]
