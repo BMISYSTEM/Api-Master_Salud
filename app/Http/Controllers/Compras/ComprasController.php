@@ -75,7 +75,7 @@ class ComprasController extends Controller
                     'status_entrega'=>'pendiente',  
                 ]
             );
-            foreach($productosObjetos as $prod)
+            foreach($product as $prod)
             {
                 venta_producto::create(
                     [
