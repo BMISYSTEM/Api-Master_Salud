@@ -36,15 +36,15 @@ Route::middleware('auth:sanctum')->group(function(){
      * Producto
      */
     Route::post('/producto/create',[ProductosController::class,'createProducto']);
-    Route::post('producto/update-image',[ProductosController::class,'updateImagen']);
-    Route::post('producto/update',[ProductosController::class,'updateProducto']);
+    Route::post('/producto/update-image',[ProductosController::class,'updateImagen']);
+    Route::post('/producto/update',[ProductosController::class,'updateProducto']);
 
     /**
      * Ventas
      */
-    Route::get('ventas/index',[ComprasController::class,'indexCompras']);
-    Route::post('ventas/index/productos',[ComprasController::class,'indexComprasProductos']);
-    Route::post('ventas/update/status',[ComprasController::class,'updateStatusEntrega']);
+    Route::get('/ventas/index',[ComprasController::class,'indexCompras']);
+    Route::post('/ventas/index/productos',[ComprasController::class,'indexComprasProductos']);
+    Route::post('/ventas/update/status',[ComprasController::class,'updateStatusEntrega']);
 })->middleware('auth:sanctum');
 
 /**
