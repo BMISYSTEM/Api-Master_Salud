@@ -72,7 +72,7 @@ class ComprasController extends Controller
                     'nombre'=>$data['nombre'],
                     'apellidos'=>$data['apellido'],
                     'status_pago'=>$data['status'],
-                    'status_entrega'=>$data['pendiente'],  
+                    'status_entrega'=>'pendiente',  
                 ]
             );
             foreach($productosObjetos as $prod)
