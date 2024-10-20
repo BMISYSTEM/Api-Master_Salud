@@ -125,7 +125,7 @@ class ComprasController extends Controller
                             inner join marcas m on vp.marca = m.id
                             inner join productos p on vp.producto = p.id
                             inner join promociones pro on vp.promocion = pro.id
-                            where vp.factura =  = '".$data['factura']."'");
+                            where vp.factura = '".$data['factura']."'");
         return response()->json(['succes'=>$index]);
     }
 
