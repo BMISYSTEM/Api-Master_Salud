@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Compras;
 
 use App\Http\Controllers\Controller;
 use App\Mail\MasterSalud;
+use App\Models\venta;
+use App\Models\venta_producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -61,9 +63,34 @@ class ComprasController extends Controller
             ];
         });
         try {
+            $venta = venta::create(
+                [
+                    'factura'=>$factura,
+                    'email_cliente'=>$data['email'],
+                    'telefono_cliente'=>$data['telefono'],
+                    'direccion'=>$data['direccion'],
+                    'nombre'=>$data['nombre'],
+                    'apellidos'=>$data['apellido'],
+                    'status_pago'=>$data['status'],
+                    'status_entrega'=>$data['pendiente'],  
+                ]
+            );
+            foreach($productosObjetos as $prod)
+            {
+                venta_producto::create(
+                    [
+                        'factura'=>$factura,
+                        'producto'=>$prod['id'],
+                        'promocion'=>$prod['id_promocion'],
+                        'marca'=>$prod['id_marca'],
+                        'valor_unitario'=>$prod['precio'],
+                        'procentaje_aplicado'=>$prod['porcentaje'],
+                    ]
+                );
+            }
             //code...
             Mail::to($data['email'])->send(new MasterSalud($data,$factura,$productosObjetos ));
-            return response()->json(['succes'=>'correo enviado']);
+            return response()->json(['succes'=>'Se registro el movimiento de forma correcta, en la bandeja de tu correo tendras la factura, con el codigo de la factura podras consultar el estado de tu pedido ']);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
