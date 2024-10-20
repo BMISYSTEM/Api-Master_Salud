@@ -121,7 +121,11 @@ class ComprasController extends Controller
 
         );
 
-        $index = DB::select("select * from venta_productos where factura = '".$data['factura']."'");
+        $index = DB::select("select vp.factura,vp.producto id_producto,p.nombre nombre_produto,vp.promocion id_promocion,pro.nombre nombre_promocion,vp.marca id_marca, m.nombre nombre_marca, vp.cantidad,vp.valor_unitario,vp.procentaje_aplicado from venta_productos vp 
+                            inner join marcas m on vp.marca = m.id
+                            inner join productos p on vp.producto = p.id
+                            inner join promociones pro on vp.promocion = pro.id
+                            where vp.factura =  = '".$data['factura']."'");
         return response()->json(['succes'=>$index]);
     }
 
