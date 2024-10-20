@@ -6,6 +6,7 @@ use App\Mail\MasterSalud;
 use App\Models\venta;
 use App\Models\venta_producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 class ComprasController extends Controller
@@ -101,5 +102,45 @@ class ComprasController extends Controller
                 'trace' => $th->getTraceAsString()
             ], 500);
         }
+    }
+
+    public function indexCompras()
+    {
+        $index = venta::all();
+        return response()->json(['succes'=>$index]);
+    }
+    public function indexComprasProductos(Request $request)
+    {
+        $data = $request->validate(
+            [
+                'factura'=>'required|exists:ventas,facturas'
+            ],
+            [
+                'factura.required'=>'la factura es obligatoria',
+                'factura.exists'=>'La factura proporcionada no existe'
+            ]
+
+        );
+
+        $index = DB::select('select * from venta_productos where factura = '.$data['factura']);
+        return response()->json(['succes'=>$index]);
+    }
+
+    public function updateStatusEntrega(Request $request)
+    {
+        $data = $request->validate(
+            [
+                'factura'=>'required|exists:ventas,facturas',
+                'status'=>'required'
+            ],
+            [
+                'factura.required'=>'la factura es obligatoria',
+                'factura.exists'=>'La factura proporcionada no existe'
+            ]
+        );
+        $venta = venta::where('factura',$data['factura'])->first();
+        $venta->status_entrega= $data['status'];
+        $venta->save();
+        return response()->json(['succes'=>'Se modifico el estado']);
     }
 }
