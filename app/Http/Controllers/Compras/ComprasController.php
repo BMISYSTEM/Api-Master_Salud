@@ -113,11 +113,10 @@ class ComprasController extends Controller
     {
         $data = $request->validate(
             [
-                'factura'=>'required|exists:ventas,factura'
+                'factura'=>'required'
             ],
             [
                 'factura.required'=>'la factura es obligatoria',
-                'factura.exists'=>'La factura proporcionada no existe'
             ]
 
         );
@@ -130,12 +129,11 @@ class ComprasController extends Controller
     {
         $data = $request->validate(
             [
-                'factura'=>'required|exists:ventas,factura',
+                'factura'=>'required',
                 'status'=>'required'
             ],
             [
                 'factura.required'=>'la factura es obligatoria',
-                'factura.exists'=>'La factura proporcionada no existe'
             ]
         );
         $venta = venta::where('factura',$data['factura'])->first();
