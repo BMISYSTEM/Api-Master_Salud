@@ -50,7 +50,7 @@
         </table>
         @if($data['status'] == 'APPROVED')
             <h2 style="font-size: 20px; color: rgb(14, 162, 176);">{{$data['nombre']}} {{$data['apellido']}}, Se ha recibido su pago. Gracias!</h2>
-            <p style="font-size: 16px; color: rgb(7, 87, 94);">Hemos recibido correctamente el pago de la factura H-8979845 para los siguientes productos.</p>
+            <p style="font-size: 16px; color: rgb(7, 87, 94);">Hemos recibido correctamente el pago de la factura {{$factura['factura']}} para los siguientes productos.</p>
         @else
             <h2 style="font-size: 20px; color: rgb(176, 36, 14);">{{$data['nombre']}} {{$data['apellido']}}, No se ha recibido su pago. Lo lamentamos!</h2>
             <p style="font-size: 16px; color: rgb(94, 7, 58);">No Hemos recibido correctamente el pago de la factura {{$factura['factura']}} para los siguientes productos.</p>
