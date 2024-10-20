@@ -113,7 +113,7 @@ class ComprasController extends Controller
     {
         $data = $request->validate(
             [
-                'factura'=>'required|exists:ventas,facturas'
+                'factura'=>'required|exists:ventas,factura'
             ],
             [
                 'factura.required'=>'la factura es obligatoria',
@@ -130,7 +130,7 @@ class ComprasController extends Controller
     {
         $data = $request->validate(
             [
-                'factura'=>'required|exists:ventas,facturas',
+                'factura'=>'required|exists:ventas,factura',
                 'status'=>'required'
             ],
             [
