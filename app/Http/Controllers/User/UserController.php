@@ -44,7 +44,7 @@ class UserController extends Controller
                     'cedula'=>$request['cedula'],
                     'direccion'=>$request['direccion'],
                     'fijo'=>$request['fijo'],
-                    'telefono'=>$request['telefono'],
+                    'celular'=>$request['telefono'],
                     'email' => $request['email'],
                     'password' => Hash::make($request['password']),
                 ]
