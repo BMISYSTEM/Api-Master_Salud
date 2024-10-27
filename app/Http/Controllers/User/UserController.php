@@ -51,7 +51,7 @@ class UserController extends Controller
             );
             return response()->json(['succes' => 'Usuario creado de forma correcta']);
         } catch (\Throwable $th) {
-            return response()->json(['error' => 'Se genero un error inesperado ' . $th]);
+            return response()->json(['error' => 'Se genero un error inesperado ' . $th],500);
         }
     }
 

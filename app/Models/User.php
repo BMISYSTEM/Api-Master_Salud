@@ -24,8 +24,7 @@ class User extends Authenticatable
         'cedula',
         'telefono',
         'fijo',
-        'direccion',
-        'rol'
+        'direccion'
     ];
 
     /**
