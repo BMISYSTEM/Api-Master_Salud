@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\registro;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -49,6 +51,7 @@ class UserController extends Controller
                     'password' => Hash::make($request['password']),
                 ]
             );
+            Mail::to($request['email'])->send(new registro($request));
             return response()->json(['succes' => 'Usuario creado de forma correcta']);
         } catch (\Throwable $th) {
             return response()->json(['error' => 'Se genero un error inesperado ' . $th],500);
