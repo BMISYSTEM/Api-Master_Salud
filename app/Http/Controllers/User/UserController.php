@@ -13,13 +13,25 @@ class UserController extends Controller
     {
         $request = $request->validate(
             [
-                'name' => 'required',
-                'email' => 'required|email',
-                'password' => 'required|min:6'
+                'nombre' => 'required',
+                'apellido' => 'required',
+                'cedula' => 'required',
+                'fijo' => 'required',
+                'telefono' => 'required',
+                'direccion' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:6',
+                
             ],
             [
-                'name.required' => 'El nombre es requerido',
+                'nombre.required' => 'El nombre es requerido',
+                'apellido.required' => 'El apellido es requerido',
+                'cedula.required' => 'El cedula es requerido',
+                'fijo.required' => 'El fijo es requerido',
+                'telefono.required' => 'El telefono es requerido',
+                'direccion.required' => 'El direccion es requerido',
                 'email.required' => 'El email es obligatorio',
+                'email.uniqued' =>'El email ya existe ',
                 'email.email' => 'El email no tiene un formato valido',
                 'password.required' => 'El password es obligatorio'
             ]
@@ -27,7 +39,12 @@ class UserController extends Controller
         try {
             $user = User::create(
                 [
-                    'name'=>$request['name'],
+                    'name'=>$request['nombre'],
+                    'apellido'=>$request['apellido'],
+                    'cedula'=>$request['cedula'],
+                    'direccion'=>$request['direccion'],
+                    'fijo'=>$request['fijo'],
+                    'telefono'=>$request['telefono'],
                     'email' => $request['email'],
                     'password' => Hash::make($request['password']),
                 ]
