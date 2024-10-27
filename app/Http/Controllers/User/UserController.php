@@ -31,7 +31,7 @@ class UserController extends Controller
                 'telefono.required' => 'El telefono es requerido',
                 'direccion.required' => 'El direccion es requerido',
                 'email.required' => 'El email es obligatorio',
-                'email.uniqued' =>'El email ya existe ',
+                'email.unique' =>'El email ya existe ',
                 'email.email' => 'El email no tiene un formato valido',
                 'password.required' => 'El password es obligatorio'
             ]
