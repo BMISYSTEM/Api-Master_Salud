@@ -47,7 +47,8 @@ class MotivosController extends Controller
 
     public function allMotivo()
     {
-        $motivos = motivos_consulta::all();
+        $id = Auth::user()->id;
+        $motivos = motivos_consulta::where('user',$id)->get();
         return response()->json(['succes'=>$motivos]);
     }
     
