@@ -49,6 +49,7 @@ class UserController extends Controller
                     'celular'=>$request['telefono'],
                     'email' => $request['email'],
                     'password' => Hash::make($request['password']),
+                    'rol'=>2
                 ]
             );
             Mail::to($request['email'])->send(new registro($request));
