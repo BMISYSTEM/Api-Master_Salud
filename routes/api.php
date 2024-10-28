@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Compras\ComprasController;
 use App\Http\Controllers\Marcas\MarcasController;
+use App\Http\Controllers\Motivos\MotivosController;
 use App\Http\Controllers\Productos\ProductosController;
 use App\Http\Controllers\Promociones\PromocionesController;
 use App\Http\Controllers\User\UserController;
@@ -45,6 +46,14 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/ventas/index',[ComprasController::class,'indexCompras']);
     Route::post('/ventas/index/productos',[ComprasController::class,'indexComprasProductos']);
     Route::post('/ventas/update/status',[ComprasController::class,'updateStatusEntrega']);
+    // -------------------------------------Panel Medicos -------------------------------------------
+
+    /**
+     * Motivos
+     */
+    Route::post('/motivo/newmotivo',[MotivosController::class,'newMotivo']);
+    Route::post('/motivo/delete',[MotivosController::class,'deleteMotivo']);
+    Route::get('/motivo/all',[MotivosController::class,'allMotivo']);
 })->middleware('auth:sanctum');
 
 /**
