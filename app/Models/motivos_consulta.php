@@ -11,6 +11,7 @@ class motivos_consulta extends Model
 
 
     protected $fillable = [
-        'nombre'
+        'nombre',
+        'user'
     ]; 
 }

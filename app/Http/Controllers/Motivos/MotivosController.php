@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Motivos;
 use App\Http\Controllers\Controller;
 use App\Models\motivos_consulta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MotivosController extends Controller 
 {
@@ -15,11 +16,12 @@ class MotivosController extends Controller
                 'nombre'=>'required'
             ]
         );
-
+        $id = Auth::user()->id;
         try {
             $motivo = motivos_consulta::create(
                 [
-                    'nombre'=>$data['nombre']
+                    'nombre'=>$data['nombre'],
+                    'user'=>$id
                 ]
             );
             return response()->json(['succes'=>'Se creo de forma correcta']);
