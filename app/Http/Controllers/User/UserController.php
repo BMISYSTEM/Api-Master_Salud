@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\registro;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -150,7 +151,6 @@ class UserController extends Controller
         try {
             $Validate = $request->validate(
                 [
-                    'id'=>'required|exists:users,id',
                     'imagen'=>'required',
                     'file'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
                 ],
@@ -159,8 +159,9 @@ class UserController extends Controller
                 ]
             );
             $ruta = $request->file('file');
+            $id = Auth::user()->id;
             $imagenPath = $ruta->store('fotos', 'public'); 
-            $user = User::find($Validate['id']);
+            $user = User::find($id);
             switch ($Validate['imagen'])
             {
                 case 1:
