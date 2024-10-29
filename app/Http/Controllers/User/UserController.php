@@ -133,4 +133,9 @@ class UserController extends Controller
             return response()->json(['error' => 'Se presento un error inesperado ' . $th]);
         }
     }
+
+    public function updateInformacion()
+    {
+        
+    }
 }
