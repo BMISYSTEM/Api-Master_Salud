@@ -210,7 +210,7 @@ class UserController extends Controller
     public function findMedic(Request $request)
     {
         $user = DB::select("select * from users where id = ".$request['id']);
-        $motivos = DB::select("select * from motivos_consulta where user=".$request['id']);
+        $motivos = DB::select("select * from motivos_consultas where user=".$request['id']);
         return response()->json(['succes' => $user,'motivos'=>$motivos]);
     }
 }
