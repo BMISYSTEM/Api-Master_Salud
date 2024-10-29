@@ -26,7 +26,7 @@ class HorariosController extends Controller
                 'domingo'=>'required',
             ]
         );
-
+        $id = Auth::user()->id;
         try {
             //code...
             $horario = horario::create(
@@ -40,6 +40,7 @@ class HorariosController extends Controller
                     'viernes'=>$data['viernes'],
                     'sabado'=>$data['sabado'],
                     'domingo'=>$data['domingo'],
+                    'user'=>$id
                 ]
             );
             return response()->json(['succes'=>'horario creado con exito']);
