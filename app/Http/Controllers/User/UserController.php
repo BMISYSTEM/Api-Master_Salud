@@ -7,6 +7,7 @@ use App\Mail\registro;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -203,6 +204,12 @@ class UserController extends Controller
     public function allMedic()
     {
         $user = User::where('rol',2)->get();
+        return response()->json(['succes' => $user]);
+    }
+
+    public function findMedic(Request $request)
+    {
+        $user = DB::select("select * from users where id = ".$request['id']);
         return response()->json(['succes' => $user]);
     }
 }

@@ -95,6 +95,7 @@ Route::get('/marcas/index',[MarcasController::class,'allMarca']);
      *
      */
     Route::get('/medic/all',[UserController::class,'allMedic']);
+    Route::get('/medic/find',[UserController::class,'findMedic']);
 /**
  * controladores de despliegue
  */
