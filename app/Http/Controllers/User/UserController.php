@@ -211,6 +211,7 @@ class UserController extends Controller
     {
         $user = DB::select("select * from users where id = ".$request['id']);
         $motivos = DB::select("select * from motivos_consultas where user=".$request['id']);
-        return response()->json(['succes' => $user,'motivos'=>$motivos]);
+        $horarios = DB::select("select * from horarios where user=".$request['id']);
+        return response()->json(['succes' => $user,'motivos'=>$motivos,'horarios'=>$horarios]);
     }
 }
