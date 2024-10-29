@@ -26,7 +26,15 @@ class User extends Authenticatable
         'fijo',
         'direccion',
         'rol',
-        'apellido'
+        'apellido',
+        'cedula',
+        'fijo',
+        'celular',
+        'direccion',
+        'cargo',
+        'horarioatencion',
+        'publico',
+        'mediospago',
     ];
 
     /**
