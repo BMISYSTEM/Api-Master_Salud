@@ -65,7 +65,7 @@ class UserController extends Controller
             [
                 'id' => 'required|exists:users,id',
                 'name' => 'required',
-                'emai' => 'required|email',
+                'email' => 'required|email',
                 'cargo'=>'nullable',
                 'horarioatencion'=>'nullable',
                 'publico'=>'nullable',
