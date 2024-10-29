@@ -63,15 +63,15 @@ class UserController extends Controller
     {
         $request = $request->validate(
             [
-                'id' => 'require|exists:users,id',
-                'name' => 'require',
-                'emai' => 'require|email',
+                'id' => 'required|exists:users,id',
+                'name' => 'required',
+                'emai' => 'required|email',
             ],
             [
-                'id.require' => 'El id es obligatorio',
+                'id.required' => 'El id es obligatorio',
                 'id.exists' => 'El id proporcionado no existe',
-                'name.require' => 'El nombre es requerido',
-                'email.require' => 'El email es obligatorio',
+                'name.required' => 'El nombre es requerido',
+                'email.required' => 'El email es obligatorio',
                 'email.email' => 'El email no tiene un formato valido',
             ]
         );
@@ -136,6 +136,6 @@ class UserController extends Controller
 
     public function updateInformacion()
     {
-        
+
     }
 }
