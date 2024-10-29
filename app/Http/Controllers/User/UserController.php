@@ -186,10 +186,10 @@ class UserController extends Controller
                     $user->foto6 = $imagenPath;
                     break;   
                 case 8:
-                    $user->foto8 = $imagenPath;
+                    $user->foto7 = $imagenPath;
                     break; 
                 case 9:
-                    $user->foto9 = $imagenPath;
+                    $user->foto8 = $imagenPath;
                     break; 
             }
             $user->save();
