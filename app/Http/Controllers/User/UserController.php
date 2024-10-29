@@ -66,6 +66,19 @@ class UserController extends Controller
                 'id' => 'required|exists:users,id',
                 'name' => 'required',
                 'emai' => 'required|email',
+                'cargo'=>'nullable',
+                'horarioatencion'=>'nullable',
+                'publico'=>'nullable',
+                'mediospago'=>'nullable',
+                'fotoperfil'=>'nullable',
+                'foto1'=>'nullable',
+                'foto2'=>'nullable',
+                'foto3'=>'nullable',
+                'foto4'=>'nullable',
+                'foto5'=>'nullable',
+                'foto6'=>'nullable',
+                'foto7'=>'nullable',
+                'foto8'=>'nullable',
             ],
             [
                 'id.required' => 'El id es obligatorio',
@@ -80,6 +93,19 @@ class UserController extends Controller
             $user = User::find($request['id']);
             $user->name = $request['name'];
             $user->email = $request['email'];
+            $user->cargo = $request['cargo'];
+            $user->horarioatencion = $request['horarioatencion'];
+            $user->publico = $request['publico'];
+            $user->mediospago = $request['mediospago'];
+            $user->fotoperfil = $request['fotoperfil'];
+            $user->foto1 = $request['foto1'];
+            $user->foto2 = $request['foto2'];
+            $user->foto3 = $request['foto3'];
+            $user->foto4 = $request['foto4'];
+            $user->foto5 = $request['foto5'];
+            $user->foto6 = $request['foto6'];
+            $user->foto7 = $request['foto7'];
+            $user->foto8 = $request['foto8'];
             $user->save();
             return response()->json(['succes' => 'Se actualizo el usuario']);
         } catch (\Throwable $th) {
