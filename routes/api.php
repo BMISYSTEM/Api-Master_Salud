@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
     Route::post('/users/update',[UserController::class,'UpdateUser']);
+    Route::post('/users/update/imagen',[UserController::class,'updateImagen']);
+
 
     /**
      * Marcas

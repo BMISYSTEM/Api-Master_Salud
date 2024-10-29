@@ -145,8 +145,56 @@ class UserController extends Controller
         }
     }
 
-    public function updateInformacion()
+    public function updateImagen(Request $request)
     {
-
+        try {
+            $Validate = $request->validate(
+                [
+                    'id'=>'required|exists:users,id',
+                    'imagen'=>'required',
+                    'file'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+                ],
+                [
+                    'imagen.require'=>'El numero de imagen es obligatorio',
+                ]
+            );
+            $ruta = $request->file('file');
+            $imagenPath = $ruta->store('fotos', 'public'); 
+            $user = User::find($Validate['id']);
+            switch ($Validate['imagen'])
+            {
+                case 1:
+                    $user->fotoperfil = $imagenPath;
+                    break;
+                case 2:
+                    $user->foto1 = $imagenPath;
+                    break;
+                case 3:
+                    $user->foto2 = $imagenPath;
+                    break;
+                case 4:
+                    $user->foto3 = $imagenPath;
+                    break;
+                case 5:
+                    $user->foto4 = $imagenPath;
+                    break;  
+                case 6:
+                    $user->foto5 = $imagenPath;
+                    break; 
+                case 7:
+                    $user->foto6 = $imagenPath;
+                    break;   
+                case 8:
+                    $user->foto8 = $imagenPath;
+                    break; 
+                case 9:
+                    $user->foto9 = $imagenPath;
+                    break; 
+            }
+            $user->save();
+            return response()->json(['succes'=>'La imagen se actualizo con exito']);
+        } catch (\Throwable $th) {
+            return response()->json(['error'=>'Se presento un error inesperado '.$th],500);
+        }
     }
 }
