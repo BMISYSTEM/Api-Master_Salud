@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->group(function(){
         return response()->json($user);
     });
 
-
+    Route::post('/users/update',[UserController::class,'UpdateUser']);
 
     /**
      * Marcas
