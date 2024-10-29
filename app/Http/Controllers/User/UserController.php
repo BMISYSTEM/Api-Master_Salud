@@ -198,4 +198,11 @@ class UserController extends Controller
             return response()->json(['error'=>'Se presento un error inesperado '.$th],500);
         }
     }
+
+
+    public function allMedic()
+    {
+        $user = User::where('rol',2)->get();
+        return response()->json(['succes' => $user]);
+    }
 }

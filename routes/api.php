@@ -89,6 +89,12 @@ Route::get('/marcas/index',[MarcasController::class,'allMarca']);
      * user->create crea un usuario y ashea el password
      */
     Route::post('/user/create',[UserController::class,'createUser']);
+
+    /**
+     * Informacion del medico 
+     *
+     */
+    Route::get('/medic/all',[UserController::class,'allMedic']);
 /**
  * controladores de despliegue
  */
