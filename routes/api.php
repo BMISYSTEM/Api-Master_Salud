@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Compras\ComprasController;
+use App\Http\Controllers\Horarios\HorariosController;
 use App\Http\Controllers\Marcas\MarcasController;
 use App\Http\Controllers\Motivos\MotivosController;
 use App\Http\Controllers\Productos\ProductosController;
@@ -54,6 +55,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/motivo/newmotivo',[MotivosController::class,'newMotivo']);
     Route::post('/motivo/delete',[MotivosController::class,'deleteMotivo']);
     Route::get('/motivo/all',[MotivosController::class,'allMotivo']);
+    /**
+     * horarios
+     */
+    Route::post('/horarios/newhorario',[HorariosController::class,'createHorario']);
+    Route::post('/horarios/delete',[HorariosController::class,'deleteHorario']);
+    Route::get('/horarios/all',[HorariosController::class,'horarioAll']);
 })->middleware('auth:sanctum');
 
 /**
