@@ -18,6 +18,9 @@ class producto extends Model
         'imagen1',
         'imagen2',
         'imagen3',
-        'imagen4'
+        'imagen4',
+        'ficha_tecnica',
+        'uso_adecuado',
+        'aviso_legal'
     ];
 }

@@ -18,6 +18,10 @@ class ProductosController extends Controller
             'precio' => 'required|numeric',
             'fotos' => 'required|array',
             'fotos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'ficha_tecnica'=>'required',
+            'uso_adecuado'=>'required',
+            'aviso_legal'=>'required'
+            
         ]);
         $rutas = [];
         try {
@@ -39,6 +43,9 @@ class ProductosController extends Controller
                     'imagen2'=>$rutas[1],
                     'imagen3'=>$rutas[2],
                     'imagen4'=>$rutas[3],
+                    'ficha_tecnica'=>$request['ficha_tecnica'],
+                    'uso_adecuado'=>$request['uso_adecuado'],
+                    'aviso_legal'=>$request['aviso_legal'],
                 ]
             );
             return response()->json(['succes'=>'Se creo el producto de forma correcta']);
