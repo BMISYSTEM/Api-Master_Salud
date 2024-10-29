@@ -61,7 +61,7 @@ class UserController extends Controller
 
     public function UpdateUser(Request $request)
     {
-        $request = $request->validate(
+        $data = $request->validate(
             [
                 'id' => 'required|exists:users,id',
                 'name' => 'required',
@@ -82,9 +82,9 @@ class UserController extends Controller
         );
         try {
 
-            $user = User::findOrFail($request['id']);
-            $user->update($request);
-            return response()->json(['succes' => 'Se actualizo el usuario']);
+            $user = User::findOrFail($data['id']);
+            $user->update($data);
+            return response()->json(['succes' => $user]);
         } catch (\Throwable $th) {
             return response()->json(['error' => 'Se presento un error inesperado ' . $th],500);
         }
