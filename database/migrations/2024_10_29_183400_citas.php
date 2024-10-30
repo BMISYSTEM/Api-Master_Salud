@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('email');
             $table->string('primera_visita');
-            $table->string('primera_visita');
             $table->date('fecha_cita');
             $table->text('observacion');
             $table->boolean('atendido')->default(0);
