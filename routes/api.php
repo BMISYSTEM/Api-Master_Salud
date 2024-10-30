@@ -76,6 +76,7 @@ Route::post('/user/auth',[AuthController::class,'Auth']);
  * Listado de productos
  */
 Route::get('/producto/index',[ProductosController::class,'allProdcuto']);
+Route::post('/producto/index',[ProductosController::class,'allProdcuto']);
 /**
  * Listado de promociones
  */

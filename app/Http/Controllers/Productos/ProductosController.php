@@ -116,10 +116,10 @@ class ProductosController extends Controller
     {
         $request = $request->validate(
             [
-                'id_producto'=>'require|exists:productos,id',
+                'id_producto'=>'required|exists:productos,id',
             ],
             [
-                'id_producto.require'=>'El producto es obligatorio',
+                'id_producto.required'=>'El producto es obligatorio',
                 'id_producto.exists'=>'EL producto no existe en la base de datos',
             ]
         );
