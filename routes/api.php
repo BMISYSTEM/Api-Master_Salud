@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Caracteristicas\CaracteristicasController;
 use App\Http\Controllers\Compras\ComprasController;
 use App\Http\Controllers\Horarios\HorariosController;
 use App\Http\Controllers\Marcas\MarcasController;
@@ -27,6 +28,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/marcas/update',[MarcasController::class,'updateMarca']);
     Route::post('/marcas/delete',[MarcasController::class,'deleteMarca']);
     Route::post('/marcas/find',[MarcasController::class,'findMarca']);
+    /**
+     * Caracteristicas
+     */
+    Route::post('/caracteristica/create',[CaracteristicasController::class,'createCaract']);
+    Route::post('/caracteristica/delete',[CaracteristicasController::class,'deleteCarat']);
+
     /**
      * Promociones
      */
@@ -97,6 +104,11 @@ Route::get('/marcas/index',[MarcasController::class,'allMarca']);
      */
     Route::get('/medic/all',[UserController::class,'allMedic']);
     Route::post('/medic/find',[UserController::class,'findMedic']);
+
+/**
+ * caracteristicas
+ */
+Route::get('/caracteristica/all',[CaracteristicasController::class,'allcaract']);
 /**
  * controladores de despliegue
  */
