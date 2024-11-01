@@ -140,10 +140,13 @@ class ProductosController extends Controller
                         select 
                         p.id,p.nombre,p.id_marca,m.nombre as nombre_marca,
                         p.id_promocion,pr.porcentaje,pr.nombre as nombre_promocion,
-                        p.precio,p.estado,p.imagen1,p.imagen2,p.imagen3,p.imagen4
+                        p.precio,p.estado,p.imagen1,p.imagen2,p.imagen3,p.imagen4,
+                        c.id id_caract,c.nombre nombre_caract
                         from productos p 
                         inner join marcas m on p.id_marca = m.id
                         inner join promociones pr on p.id_promocion = pr.id
+                        LEFT join caracteristicas c on p.caracteristica = c.id	
+                        where p.estado <> 0 
                         '); 
             return response()->json(['succes'=>$producto]);
         } catch (\Throwable $th) {
