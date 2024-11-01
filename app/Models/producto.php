@@ -21,6 +21,7 @@ class producto extends Model
         'imagen4',
         'ficha_tecnica',
         'uso_adecuado',
-        'aviso_legal'
+        'aviso_legal',
+        'caracteristica'
     ];
 }

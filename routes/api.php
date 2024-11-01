@@ -69,7 +69,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/horarios/delete',[HorariosController::class,'deleteHorario']);
     Route::get('/horarios/all',[HorariosController::class,'horarioAll']);
 })->middleware('auth:sanctum');
-
 /**
  * Compras
  */
@@ -78,7 +77,6 @@ Route::post('/compras/new',[ComprasController::class,'newCompra']);
  * Login 
  */
 Route::post('/user/auth',[AuthController::class,'Auth']);
-
 /**
  * Listado de productos
  */
@@ -92,19 +90,16 @@ Route::post('/producto/index',[ProductosController::class,'allProdcuto']);
  * Listado de marcas
  */
 Route::get('/marcas/index',[MarcasController::class,'allMarca']);
-
-    /**
-     * user->create crea un usuario y ashea el password
-     */
-    Route::post('/user/create',[UserController::class,'createUser']);
-
-    /**
-     * Informacion del medico 
-     *
-     */
-    Route::get('/medic/all',[UserController::class,'allMedic']);
-    Route::post('/medic/find',[UserController::class,'findMedic']);
-
+/**
+ * user->create crea un usuario y ashea el password
+ */
+Route::post('/user/create',[UserController::class,'createUser']);
+/**
+ * Informacion del medico 
+ *
+ */
+Route::get('/medic/all',[UserController::class,'allMedic']);
+Route::post('/medic/find',[UserController::class,'findMedic']);
 /**
  * caracteristicas
  */
@@ -112,8 +107,6 @@ Route::get('/caracteristica/all',[CaracteristicasController::class,'allcaract'])
 /**
  * controladores de despliegue
  */
-
-
 Route::get('/config/all',function(){
     Artisan::call('migrate');
     Artisan::call('storage:link');
