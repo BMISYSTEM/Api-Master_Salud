@@ -68,6 +68,13 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/horarios/newhorario',[HorariosController::class,'createHorario']);
     Route::post('/horarios/delete',[HorariosController::class,'deleteHorario']);
     Route::get('/horarios/all',[HorariosController::class,'horarioAll']);
+
+    /**
+     * comentarios
+     */
+    Route::post('/comentario/create',[UserController::class,'createComentario']);
+    Route::post('/comentario/delete',[UserController::class,'deleteComentario']);
+    Route::get('/comentario/all',[UserController::class,'allcomentarios']);
 })->middleware('auth:sanctum');
 /**
  * Compras
@@ -104,6 +111,8 @@ Route::post('/medic/find',[UserController::class,'findMedic']);
  * caracteristicas
  */
 Route::get('/caracteristica/all',[CaracteristicasController::class,'allcaract']);
+/** comentarios del medico para el publico */
+Route::get('/comentario/all/medic',[UserController::class,'allcomentariosPublic']);
 /**
  * controladores de despliegue
  */

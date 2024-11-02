@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\registro;
+use App\Models\comentario;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -213,5 +214,56 @@ class UserController extends Controller
         $motivos = DB::select("select * from motivos_consultas where user=".$request['id']);
         $horarios = DB::select("select * from horarios where user=".$request['id']);
         return response()->json(['succes' => $user,'motivos'=>$motivos,'horarios'=>$horarios]);
+    }
+
+    public function createComentario(Request $request)
+    {
+        $data = $request->validate(
+            [
+                'nombre'=>'required',
+                'email'=>'required|email',
+                'observacion'=>'required',
+                'calificacion'=>'required|numeric',
+                'user'=>'required|exists:users,id'
+
+            ]
+        );
+        try {
+            $comentario = comentario::create(
+                [
+                    'nombre'=>$data['nombre'],
+                    'email'=>$data['email'],
+                    'observacion'=>$data['observacion'],
+                    'calificacion'=>$data['calificacion'],
+                    'user'=>$data['user'],
+                ]
+            );
+            return response()->json(['succes'=>'se creo el omentario de forma correcta']);
+        } catch (\Throwable $th) {
+            return response()->json(['error'=>'error inesperado en el servidor: '.$th],500);
+        }
+    }
+
+    public function deleteComentario(Request $request)
+    {
+        $data = $request->validate(
+            [
+                'id'=>'required|exists:comentarios,id'
+            ]
+        );
+        try {
+            $comentario = comentario::find($request['id'])->delete();
+            return response()->json(['succes'=>'se elimino correctamente el comentario']);
+        } catch (\Throwable $th) {
+            return response()->json(['error'=>'error inesperado en el servidor: '.$th],500);
+        }
+    }
+
+    public function allcomentariosPublic(Request $request)
+    {
+        $id = $request->query('id');
+        $comentario = '';
+        $comentario = comentario::where('user',$id)->get();
+        return response()->json(['succes'=>$comentario]);
     }
 }
