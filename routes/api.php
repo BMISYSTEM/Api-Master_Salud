@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Caracteristicas\CaracteristicasController;
+use App\Http\Controllers\CitasController\CitasController;
 use App\Http\Controllers\Compras\ComprasController;
 use App\Http\Controllers\Horarios\HorariosController;
 use App\Http\Controllers\Marcas\MarcasController;
@@ -114,6 +115,10 @@ Route::get('/caracteristica/all',[CaracteristicasController::class,'allcaract'])
 /** comentarios del medico para el publico */
 Route::post('/comentario/create',[UserController::class,'createComentario']);
 Route::get('/comentario/all/medic',[UserController::class,'allcomentariosPublic']);
+
+/** Agendar cita */
+Route::post('/cita/create',[CitasController::class,'createCita']);
+
 /**
  * controladores de despliegue
  */
