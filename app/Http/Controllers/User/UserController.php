@@ -211,7 +211,7 @@ class UserController extends Controller
     public function findMedic(Request $request)
     {
         $user = DB::select("select * from users where id = ".$request['id']);
-        $calificacion = DB::select('select COUNT(*), sum(calificacion), (sum(calificacion)/count(*)) promedio from comentarios where user ='.$request[id]);
+        $calificacion = DB::select('select COUNT(*), sum(calificacion), (sum(calificacion)/count(*)) promedio from comentarios where user ='.$request['id']);
         $motivos = DB::select("select * from motivos_consultas where user=".$request['id']);
         $horarios = DB::select("select * from horarios where user=".$request['id']);
         return response()->json(['succes' => $user,'motivos'=>$motivos,'horarios'=>$horarios,'calificacion'=>$calificacion]);
