@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('observacion');
             $table->integer('calificacion');
-            $table->unsignedBigInteger('user');
-            $table->foreignId('user')->references('id')->on('users');
+            $table->foreignId('user')->constrained();
             $table->timestamps();
         });
     }
