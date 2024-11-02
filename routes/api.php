@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/users/update',[UserController::class,'UpdateUser']);
     Route::post('/users/update/imagen',[UserController::class,'updateImagen']);
     /**Informacion del medico en el panel  */
-    Route::get('/medic/all',[UserController::class,'findMedicPrivate']);
+    Route::get('/medic/all/private',[UserController::class,'findMedicPrivate']);
     /**
      * Marcas
      */
