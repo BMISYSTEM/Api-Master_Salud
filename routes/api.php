@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::post('/users/update',[UserController::class,'UpdateUser']);
     Route::post('/users/update/imagen',[UserController::class,'updateImagen']);
+    /**Informacion del medico en el panel  */
+    Route::get('/medic/all',[UserController::class,'findMedicPrivate']);
     /**
      * Marcas
      */
@@ -47,7 +49,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/producto/create',[ProductosController::class,'createProducto']);
     Route::post('/producto/update-image',[ProductosController::class,'updateImagen']);
     Route::post('/producto/update',[ProductosController::class,'updateProducto']);
-
     /**
      * Ventas
      */

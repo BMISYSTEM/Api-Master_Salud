@@ -207,7 +207,21 @@ class UserController extends Controller
         $user = User::where('rol',2)->get();
         return response()->json(['succes' => $user]);
     }
-
+    public function findMedicPrivate()
+    {
+        $id = Auth::user()->id;
+        try {
+            //code...
+            $user = DB::select("select * from users where id = ".$id);
+        $calificacion = DB::select('select COUNT(*) total, sum(calificacion) suma, (sum(calificacion)/count(*)) promedio from comentarios where user ='.$id);
+        $motivos = DB::select("select * from motivos_consultas where user=".$id);
+        $horarios = DB::select("select * from horarios where user=".$id);
+        return response()->json(['succes' => $user,'motivos'=>$motivos,'horarios'=>$horarios,'calificacion'=>$calificacion]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['error'=>$th]);
+        }
+    }
     public function findMedic(Request $request)
     {
         $user = DB::select("select * from users where id = ".$request['id']);
