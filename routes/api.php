@@ -72,7 +72,6 @@ Route::middleware('auth:sanctum')->group(function(){
     /**
      * comentarios
      */
-    Route::post('/comentario/create',[UserController::class,'createComentario']);
     Route::post('/comentario/delete',[UserController::class,'deleteComentario']);
     Route::get('/comentario/all',[UserController::class,'allcomentarios']);
 })->middleware('auth:sanctum');
@@ -92,7 +91,7 @@ Route::post('/producto/index',[ProductosController::class,'allProdcuto']);
 /**
  * Listado de promociones
  */
- Route::get('/promocion/index',[PromocionesController::class,'allPromociones']);
+Route::get('/promocion/index',[PromocionesController::class,'allPromociones']);
 /**
  * Listado de marcas
  */
@@ -112,6 +111,7 @@ Route::post('/medic/find',[UserController::class,'findMedic']);
  */
 Route::get('/caracteristica/all',[CaracteristicasController::class,'allcaract']);
 /** comentarios del medico para el publico */
+Route::post('/comentario/create',[UserController::class,'createComentario']);
 Route::get('/comentario/all/medic',[UserController::class,'allcomentariosPublic']);
 /**
  * controladores de despliegue
