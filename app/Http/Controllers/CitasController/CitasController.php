@@ -46,7 +46,7 @@ class CitasController extends Controller
             Mail::to($data['email'])->send(new agndarCita($data,$horario));
             return response()->json(['succes'=>'Se registro la cita de forma correcta']);
         } catch (\Throwable $th) {
-            return response()->json(['error'=>'Error generado al momento de mandar la cita']);
+            return response()->json(['error'=>'Error generado al momento de mandar la cita//'.$th]);
         }
     }
     //eliminar
