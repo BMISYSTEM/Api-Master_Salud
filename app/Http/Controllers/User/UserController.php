@@ -212,11 +212,12 @@ class UserController extends Controller
         $id = Auth::user()->id;
         try {
             //code...
-            $user = DB::select("select * from users where id = ".$id);
+        $user = DB::select("select * from users where id = ".$id);
+        $comentarios = DB::select('select * from comentarios where user = '.$id);
         $calificacion = DB::select('select COUNT(*) total, sum(calificacion) suma, (sum(calificacion)/count(*)) promedio from comentarios where user ='.$id);
         $motivos = DB::select("select * from motivos_consultas where user=".$id);
         $horarios = DB::select("select * from horarios where user=".$id);
-        return response()->json(['succes' => $user,'motivos'=>$motivos,'horarios'=>$horarios,'calificacion'=>$calificacion]);
+        return response()->json(['succes' => $user,'motivos'=>$motivos,'horarios'=>$horarios,'calificacion'=>$calificacion,'comentarios'=>$comentarios]);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json(['error'=>$th]);
