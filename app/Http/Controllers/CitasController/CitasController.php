@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\agndarCita;
 use App\Models\cita;
 use App\Models\horario;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -29,13 +30,15 @@ class CitasController extends Controller
         );
 
         try {
+            $fechaString = $data['fecha_cita'];
+            $fecha = Carbon::createFromFormat('d/m/Y', $fechaString);
             $cita = cita::create(
                 [
                     'nombre'=>$data['nombre'],
                     'telefono'=>$data['telefono'],
                     'email'=>$data['email'],
                     'primera_visita'=>$data['primera_visita'],
-                    'fecha_cita'=>$data['fecha_cita'],
+                    'fecha_cita'=>$fecha,
                     'observacion'=>$data['observacion'],
                     'horario'=>$data['horario'],
                     'motivo'=>$data['motivo'],
