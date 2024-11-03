@@ -210,24 +210,44 @@ class UserController extends Controller
     public function findMedicPrivate()
     {
         $id = Auth::user()->id;
+        $rol = Auth::user()->rol;
         try {
+            if($rol == 2)
+            {
+                
+                $user = DB::select("select * from users where id = ".$id);
+                $comentarios = DB::select('select * from comentarios where user = '.$id);
+                $calificacion = DB::select('select COUNT(*) total, sum(calificacion) suma, (sum(calificacion)/count(*)) promedio from comentarios where user ='.$id);
+                $motivos = DB::select("select * from motivos_consultas where user=".$id);
+                $horarios = DB::select("select * from horarios where user=".$id);
+                $citas = DB::select('select
+                c.id,c.nombre,c.telefono,c.email,c.primera_visita,c.observacion,c.fecha_cita,c.atendido,
+                m.nombre motivo,h.hora_inicio,h.hora_fin
+                from citas c
+                inner join motivos_consultas m on c.motivo = m.id
+                inner join horarios h on c.horario = h.id
+                where c.user = '.$id.'
+                ');
+                $resumenCitas = DB::select('select count(*) total,(select count(*) from citas where user = 7 and atendido = 1 ) atendidos,
+                (select count(*) from citas where user = '.$id.' and atendido = 0) pendientes
+                from citas where user = '.$id);
+            }else{
+                $user = DB::select("select * from users where id = ".$id);
+                $comentarios = DB::select('select * from comentarios ');
+                $calificacion = DB::select('select COUNT(*) total, sum(calificacion) suma, (sum(calificacion)/count(*)) promedio from comentarios');
+                $motivos = DB::select("select * from motivos_consultas");
+                $horarios = DB::select("select * from horarios");
+                $citas = DB::select('select
+                c.id,c.nombre,c.telefono,c.email,c.primera_visita,c.observacion,c.fecha_cita,c.atendido,
+                m.nombre motivo,h.hora_inicio,h.hora_fin
+                from citas c
+                inner join motivos_consultas m on c.motivo = m.id
+                inner join horarios h on c.horario = h.id');
+                $resumenCitas = DB::select('select count(*) total,(select count(*) from citas where user = 7 and atendido = 1 ) atendidos,
+                (select count(*) from citas  atendido = 0) pendientes
+                from citas ');
+            }
             //code...
-        $user = DB::select("select * from users where id = ".$id);
-        $comentarios = DB::select('select * from comentarios where user = '.$id);
-        $calificacion = DB::select('select COUNT(*) total, sum(calificacion) suma, (sum(calificacion)/count(*)) promedio from comentarios where user ='.$id);
-        $motivos = DB::select("select * from motivos_consultas where user=".$id);
-        $horarios = DB::select("select * from horarios where user=".$id);
-        $citas = DB::select('select
-        c.id,c.nombre,c.telefono,c.email,c.primera_visita,c.observacion,c.fecha_cita,c.atendido,
-        m.nombre motivo,h.hora_inicio,h.hora_fin
-        from citas c
-        inner join motivos_consultas m on c.motivo = m.id
-        inner join horarios h on c.horario = h.id
-        where c.user = '.$id.'
-        ');
-        $resumenCitas = DB::select('select count(*) total,(select count(*) from citas where user = 7 and atendido = 1 ) atendidos,
-(select count(*) from citas where user = '.$id.' and atendido = 0) pendientes
-from citas where user = '.$id);
         return response()->json(['succes' => $user,
         'motivos'=>$motivos,
         'horarios'=>$horarios,
