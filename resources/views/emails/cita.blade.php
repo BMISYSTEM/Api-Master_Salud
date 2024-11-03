@@ -44,7 +44,7 @@
                     <img src="{{ asset('logo.jpg') }}" alt="icono de logo" style="width: 100px; height: 100px;">
                 </td>
                 <td style="text-align: center;">
-                    <h1 style="font-size: 24px; color: rgb(14, 162, 176);">Asignacion de cita</h1>
+                    <h1 style="font-size: 24px; color: rgb(14, 162, 176);">Asignacion de citas</h1>
                 </td>
             </tr>
         </table>

@@ -42,7 +42,7 @@ class agndarCita extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.registro',
+            view: 'emails.cita',
             with: [
                     'data' => $this->data,
                     'horario'=>$this->horario,
