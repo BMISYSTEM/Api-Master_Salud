@@ -218,7 +218,7 @@ class UserController extends Controller
         $motivos = DB::select("select * from motivos_consultas where user=".$id);
         $horarios = DB::select("select * from horarios where user=".$id);
         $citas = DB::select('select
-        c.nombre,c.telefono,c.email,c.primera_visita,c.observacion,c.fecha_cita,c.atendido,
+        c.id,c.nombre,c.telefono,c.email,c.primera_visita,c.observacion,c.fecha_cita,c.atendido,
         m.nombre motivo,h.hora_inicio,h.hora_fin
         from citas c
         inner join motivos_consultas m on c.motivo = m.id
