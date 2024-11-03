@@ -35,6 +35,9 @@ class User extends Authenticatable
         'horarioatencion',
         'publico',
         'mediospago',
+        'ciudad',
+        'presencial',
+        'virtual'
     ];
 
     /**
