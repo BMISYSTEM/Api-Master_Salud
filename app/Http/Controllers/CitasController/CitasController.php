@@ -64,7 +64,7 @@ class CitasController extends Controller
     {
         $id = $request->query('id');
         $cita = cita::find($id);
-        $cita->atendida = 1;
+        $cita->atendido = 1;
         $cita->save();
         return response()->json(['succes'=>'se actualizo la cita de forma correcta']);
     }
