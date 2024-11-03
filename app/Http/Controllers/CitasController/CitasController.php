@@ -53,8 +53,20 @@ class CitasController extends Controller
         }
     }
     //eliminar
-
+    public function deleteCita(Request $request)
+    {
+        $id = $request->query('id');
+        $delete = cita::find($id)->delete();
+        return response()->json(['succes'=>'Se elimino la cita de forma correcta']);
+    }
     //marcar atendida
-
+    public function atendida(Request $request)
+    {
+        $id = $request->query('id');
+        $cita = cita::find($id);
+        $cita->atendida = 1;
+        $cita->save();
+        return response()->json(['succes'=>'se actualizo la cita de forma correcta']);
+    }
     //consultar todas
 }

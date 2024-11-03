@@ -76,6 +76,11 @@ Route::middleware('auth:sanctum')->group(function(){
      */
     Route::post('/comentario/delete',[UserController::class,'deleteComentario']);
     Route::get('/comentario/all',[UserController::class,'allcomentarios']);
+    /**
+     * Citas
+     */
+    Route::get('/cita/delete',[CitasController::class,'deleteCita']);
+    Route::get('/cita/atendido',[CitasController::class,'atendida']);
 })->middleware('auth:sanctum');
 /**
  * Compras
