@@ -225,12 +225,16 @@ class UserController extends Controller
         inner join horarios h on c.horario = h.id
         where c.user = '.$id.'
         ');
+        $resumenCitas = DB::select('select count(*) total,(select count(*) from citas where user = 7 and atendido = 1 ) atendidos,
+(select count(*) from citas where user = '.$id.' and atendido = 0) pendientes
+from citas where user = '.$id);
         return response()->json(['succes' => $user,
         'motivos'=>$motivos,
         'horarios'=>$horarios,
         'calificacion'=>$calificacion,
         'comentarios'=>$comentarios,
-        'citas'=>$citas
+        'citas'=>$citas,
+        'resumen'=>$resumenCitas
         ]);
         } catch (\Throwable $th) {
             //throw $th;
