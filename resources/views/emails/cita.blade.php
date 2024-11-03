@@ -50,7 +50,6 @@
         </table>
         <h2 style="font-size: 20px; color: rgb(14, 162, 176);">{{$data['nombre']}} , Se ha registrado de forma correcta la cita. Gracias!</h2>
         <p style="font-size: 16px; color: rgb(7, 87, 94);">Programacion de la cita para el dia {{$data['fecha_cita']}} a la hora {{$horario['hora_inicio']}} hasta {{$horario['hora_fin']}}</p>
-
     </div>
 </body>
 </html>

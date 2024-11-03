@@ -217,7 +217,21 @@ class UserController extends Controller
         $calificacion = DB::select('select COUNT(*) total, sum(calificacion) suma, (sum(calificacion)/count(*)) promedio from comentarios where user ='.$id);
         $motivos = DB::select("select * from motivos_consultas where user=".$id);
         $horarios = DB::select("select * from horarios where user=".$id);
-        return response()->json(['succes' => $user,'motivos'=>$motivos,'horarios'=>$horarios,'calificacion'=>$calificacion,'comentarios'=>$comentarios]);
+        $citas = DB::select('select
+        c.nombre,c.telefono,c.email,c.primera_visita,c.observacion,c.fecha_cita,c.atendido,
+        m.nombre motivo,h.hora_inicio,h.hora_fin
+        from citas c
+        inner join motivos_consultas m on c.motivo = m.id
+        inner join horarios h on c.horario = h.id
+        where c.user = '.$id.'
+        ');
+        return response()->json(['succes' => $user,
+        'motivos'=>$motivos,
+        'horarios'=>$horarios,
+        'calificacion'=>$calificacion,
+        'comentarios'=>$comentarios,
+        'citas'=>$citas
+        ]);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json(['error'=>$th]);
