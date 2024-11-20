@@ -37,7 +37,8 @@ class User extends Authenticatable
         'mediospago',
         'ciudad',
         'presencial',
-        'virtual'
+        'virtual',
+        'destacado'
     ];
 
     /**

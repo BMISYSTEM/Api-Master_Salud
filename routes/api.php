@@ -127,7 +127,6 @@ Route::get('/caracteristica/all',[CaracteristicasController::class,'allcaract'])
 /** comentarios del medico para el publico */
 Route::post('/comentario/create',[UserController::class,'createComentario']);
 Route::get('/comentario/all/medic',[UserController::class,'allcomentariosPublic']);
-
 /** Agendar cita */
 Route::post('/cita/create',[CitasController::class,'createCita']);
 /**

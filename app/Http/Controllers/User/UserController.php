@@ -58,7 +58,8 @@ class UserController extends Controller
                     'ciudad'=>$request['ciudad'],
                     'presencial'=>$request['presencial'],
                     'virtual'=>$request['virtual'],
-                    'rol'=>2
+                    'rol'=>2,
+                    'destacado'=>0
                 ]
             );
             Mail::to($request['email'])->send(new registro($request));
@@ -88,6 +89,7 @@ class UserController extends Controller
                 'horarioatencion'=>'nullable',
                 'publico'=>'nullable',
                 'mediospago'=>'nullable',
+                'destacado'=>'nullable'
             ],
             [
                 'id.required' => 'El id es obligatorio',
