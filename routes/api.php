@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Caracteristicas\CaracteristicasController;
 use App\Http\Controllers\CitasController\CitasController;
 use App\Http\Controllers\Compras\ComprasController;
+use App\Http\Controllers\Especialidades\EspecialidadesController;
 use App\Http\Controllers\Horarios\HorariosController;
 use App\Http\Controllers\Marcas\MarcasController;
 use App\Http\Controllers\Motivos\MotivosController;
@@ -81,6 +82,12 @@ Route::middleware('auth:sanctum')->group(function(){
      */
     Route::get('/cita/delete',[CitasController::class,'deleteCita']);
     Route::get('/cita/atendido',[CitasController::class,'atendida']);
+    /**
+     * especialidades
+     */
+    Route::post('/especialidad/create',[EspecialidadesController::class,'createEspecialidad']);
+    Route::post('/especialidad/update',[EspecialidadesController::class,'updateEspecialidad']);
+    Route::post('/especialidad/delete',[EspecialidadesController::class,'deleteEspecialidad']);
 })->middleware('auth:sanctum');
 /**
  * Compras
@@ -123,7 +130,10 @@ Route::get('/comentario/all/medic',[UserController::class,'allcomentariosPublic'
 
 /** Agendar cita */
 Route::post('/cita/create',[CitasController::class,'createCita']);
-
+/**
+ * especialidades
+ */
+Route::get('/especialidades/all',[EspecialidadesController::class,'all']);
 /**
  * controladores de despliegue
  */
