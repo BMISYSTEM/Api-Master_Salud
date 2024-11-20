@@ -89,7 +89,8 @@ class UserController extends Controller
                 'horarioatencion'=>'nullable',
                 'publico'=>'nullable',
                 'mediospago'=>'nullable',
-                'destacado'=>'nullable'
+                'destacado'=>'nullable',
+                'activo'=>'nullable'
             ],
             [
                 'id.required' => 'El id es obligatorio',
