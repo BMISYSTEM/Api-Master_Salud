@@ -38,7 +38,8 @@ class User extends Authenticatable
         'ciudad',
         'presencial',
         'virtual',
-        'destacado'
+        'destacado',
+        'activo'
     ];
 
     /**
