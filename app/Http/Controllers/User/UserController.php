@@ -90,7 +90,11 @@ class UserController extends Controller
                 'publico'=>'nullable',
                 'mediospago'=>'nullable',
                 'destacado'=>'nullable',
-                'activo'=>'nullable'
+                'activo'=>'nullable',
+                'ciudad'=>'nullable',
+                'virtual'=>'nullable',
+                'presencial'=>'nullable',
+                'destacado'=>'nullable'
             ],
             [
                 'id.required' => 'El id es obligatorio',
