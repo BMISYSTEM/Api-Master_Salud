@@ -237,8 +237,8 @@ class UserController extends Controller
                 c.id,c.nombre,c.telefono,c.email,c.primera_visita,c.observacion,c.fecha_cita,c.atendido,
                 m.nombre motivo,h.hora_inicio,h.hora_fin
                 from citas c
-                inner join motivos_consultas m on c.motivo = m.id
-                inner join horarios h on c.horario = h.id
+                left join motivos_consultas m on c.motivo = m.id
+                left join horarios h on c.horario = h.id
                 where c.user = '.$id.'
                 ');
                 $resumenCitas = DB::select('select count(*) total,(select count(*) from citas where user = '.$id.' and atendido = 1 ) atendidos,
