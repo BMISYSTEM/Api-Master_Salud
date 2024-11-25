@@ -5,6 +5,7 @@ use App\Http\Controllers\Caracteristicas\CaracteristicasController;
 use App\Http\Controllers\CitasController\CitasController;
 use App\Http\Controllers\Compras\ComprasController;
 use App\Http\Controllers\Especialidades\EspecialidadesController;
+use App\Http\Controllers\home\HomeController;
 use App\Http\Controllers\Horarios\HorariosController;
 use App\Http\Controllers\Marcas\MarcasController;
 use App\Http\Controllers\Motivos\MotivosController;
@@ -88,6 +89,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/especialidad/create',[EspecialidadesController::class,'createEspecialidad']);
     Route::post('/especialidad/update',[EspecialidadesController::class,'updateEspecialidad']);
     Route::post('/especialidad/delete',[EspecialidadesController::class,'deleteEspecialidad']);
+    /**
+     * home
+     */
+    Route::post('/home/create',[HomeController::class,'create']);
 })->middleware('auth:sanctum');
 /**
  * Compras
@@ -133,6 +138,10 @@ Route::post('/cita/create',[CitasController::class,'createCita']);
  * especialidades
  */
 Route::get('/especialidades/all',[EspecialidadesController::class,'all']);
+/**
+ * home
+ */
+Route::get('/home/all',[HomeController::class,'all']);
 /**
  * controladores de despliegue
  */
