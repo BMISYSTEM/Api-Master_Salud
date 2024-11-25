@@ -217,7 +217,10 @@ class UserController extends Controller
 
     public function allMedic()
     {
-        $user = User::where('rol',2)->get();
+        /* $user = User::where('rol',2)->get(); */
+        $user = DB::select('select u.*,c.comentarios,c.promedio from users u 
+        left join (select count(*) as comentarios, user as user,sum(calificacion)/count(*) as promedio from comentarios GROUP BY user) c on u.id =  c.user
+        where u.rol = 2');
         return response()->json(['succes' => $user]);
     }
     public function findMedicPrivate()
