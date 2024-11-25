@@ -58,4 +58,22 @@ class CaracteristicasController extends Controller
         $data = caracteristica::all();
         return response()->json(['succes'=>$data]);
     }
+
+    public function update(Request $request)
+    {
+        $data = $request->validate(
+            [
+                'nombre'=>'required',
+                'id'=>'required'
+            ]
+        );
+        try {
+            $caract = caracteristica::find($data['id']);
+            $caract->nombre = $data['nombre'];
+            $caract->save();
+            return response()->json(['succes'=>'Caracteristica editada de forma correcta']);
+        } catch (\Throwable $th) {
+            return response()->json(['error'=>'Error insesperado en el servidor '.$th],500);
+        }
+    }
 }

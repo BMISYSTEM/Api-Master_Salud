@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function(){
      */
     Route::post('/caracteristica/create',[CaracteristicasController::class,'createCaract']);
     Route::post('/caracteristica/delete',[CaracteristicasController::class,'deleteCarat']);
+    Route::post('/caracteristica/update',[CaracteristicasController::class,'update']);
 
     /**
      * Promociones
