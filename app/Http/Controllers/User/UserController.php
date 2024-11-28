@@ -26,7 +26,7 @@ class UserController extends Controller
                 'direccion' => 'required',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required|min:6',
-                'ciudad'=>'required',
+                'ciudad'=>'nullable',
                 'virtual'=>'required',
                 'presencial'=>'required'
                 
@@ -55,7 +55,7 @@ class UserController extends Controller
                     'celular'=>$request['telefono'],
                     'email' => $request['email'],
                     'password' => Hash::make($request['password']),
-                    'ciudad'=>$request['ciudad'],
+                    'ciudad'=>'no definida',
                     'presencial'=>$request['presencial'],
                     'virtual'=>$request['virtual'],
                     'rol'=>2,
