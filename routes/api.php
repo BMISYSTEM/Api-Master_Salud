@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/marcas/delete',[MarcasController::class,'deleteMarca']);
     Route::post('/marcas/find',[MarcasController::class,'findMarca']);
     /**
-     * Caracteristicas
+    * Caracteristicas
      */
     Route::post('/caracteristica/create',[CaracteristicasController::class,'createCaract']);
     Route::post('/caracteristica/delete',[CaracteristicasController::class,'deleteCarat']);
@@ -94,6 +94,7 @@ Route::middleware('auth:sanctum')->group(function(){
      * home
      */
     Route::post('/home/create',[HomeController::class,'create']);
+    Route::post('/home/banner',[HomeController::class,'banner']);
 })->middleware('auth:sanctum');
 /**
  * Compras
