@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\bold\BoldController;
 use App\Http\Controllers\Caracteristicas\CaracteristicasController;
 use App\Http\Controllers\CitasController\CitasController;
 use App\Http\Controllers\Compras\ComprasController;
@@ -152,3 +153,7 @@ Route::get('/config/all',function(){
     Artisan::call('storage:link');
     return response()->json(['succes'=>'se ejecuto la migraciones y se creo el enlase simbolico']);
 });
+
+/* creacion de link para pago  */
+Route::post("/linkpago",[BoldController::class,'createLinkPago']);
+Route::post("/statuspago",[BoldController::class,'webHookBold']);
